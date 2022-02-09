@@ -1,5 +1,4 @@
 import test from 'brittle'
-import https from 'https'
 import fetchAddress, { setServers } from './well-known-wallets-dane.js'
 
 setServers([
