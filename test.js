@@ -1,5 +1,5 @@
-import test from 'brittle'
-import fetchAddress, { setServers } from './well-known-wallets-dane.js'
+const { test } = require('brittle')
+const { fetchAddress, setServers } = require('./well-known-wallets-dane.js')
 
 setServers([
   '103.196.38.38',

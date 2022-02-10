@@ -5,8 +5,7 @@
 `npm i well-known-wallets-dane`
 
 ```js
-import https from 'https'
-import fetchAddress, { setServers } from 'well-known-wallets-dane'
+const { fetchAddress, setServers } = require('well-known-wallets-dane')
 
 setServers([
   '103.196.38.38',

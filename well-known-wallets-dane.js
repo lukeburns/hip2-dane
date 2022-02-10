@@ -1,9 +1,9 @@
-import https from 'https'
-import { DANEAgent, setServers, lookup } from 'https-dane'
+const https = require('https')
+const { DANEAgent, setServers, lookup, dns } = require('https-dane')
 
 const agent = new DANEAgent()
 
-export default function fetchAddress (name, token = 'HNS') {
+function fetchAddress (name, token = 'HNS') {
   return new Promise((resolve, reject) => {
     const url = `https://${name}/.well-known/wallets/${token.toUpperCase()}`
     const req = https.get(url, { agent, lookup }, res => {
@@ -25,4 +25,4 @@ export default function fetchAddress (name, token = 'HNS') {
   })
 }
 
-export { fetchAddress, DANEAgent, setServers, lookup, agent }
+module.exports = { fetchAddress, setServers, agent, lookup, DANEAgent, dns }
