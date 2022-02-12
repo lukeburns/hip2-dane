@@ -1,18 +1,21 @@
 {
-  "name": "well-known-wallets-dane",
-  "version": "0.1.0",
-  "description": "",
-  "main": "well-known-wallets-dane.js",
+  "name": "hip2-dane",
+  "version": "0.2.0",
+  "description": "HIP-0002 Well-Known Wallets",
+  "main": "hip2-dane.js",
   "scripts": {
     "test": "node test.js"
   },
   "author": "Luke Burns",
   "license": "ISC",
-  "dependencies": {
-    "hdns": "github:lukeburns/hdns",
-    "https-dane": "github:lukeburns/https-dane"
-  },
   "devDependencies": {
     "brittle": "^2.0.3"
+  },
+  "dependencies": {
+    "https-dane": "^0.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukeburns/hip2-dane.git"
   }
 }

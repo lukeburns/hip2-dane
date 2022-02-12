@@ -2,15 +2,13 @@
 
 ## Usage
 
-`npm i well-known-wallets-dane`
+`npm i hip2-dane`
 
 ```js
-const { fetchAddress, setServers } = require('well-known-wallets-dane')
+const { fetchAddress, setServers } = require('hip2-dane')
 
 setServers([
-  '103.196.38.38',
-  '103.196.38.39',
-  '103.196.38.40'
+  '127.0.0.1:5350'
 ])
 
 fetchAddress('iamfernando', 'hns').then(console.log)

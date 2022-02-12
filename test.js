@@ -1,10 +1,8 @@
 const { test } = require('brittle')
-const { fetchAddress, setServers } = require('./well-known-wallets-dane.js')
+const { fetchAddress, setServers } = require('./hip2-dane.js')
 
 setServers([
-  '103.196.38.38',
-  '103.196.38.39',
-  '103.196.38.40'
+  '127.0.0.1:5350'
 ])
 
 test('fetch address', async assert => {
