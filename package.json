@@ -1,6 +1,6 @@
 {
   "name": "hip2-dane",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "HIP-0002 Well-Known Wallets",
   "main": "hip2-dane.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "brittle": "^2.0.3"
   },
   "dependencies": {
-    "https-dane": "^0.1.2"
+    "https-dane": "0.1.4"
   },
   "repository": {
     "type": "git",
