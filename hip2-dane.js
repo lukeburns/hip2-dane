@@ -5,8 +5,8 @@ const agent = new DANEAgent()
 
 const defaultOpts = {
   token: 'HNS',
-  maxLength: 43,
-  validate: key => !!key && key.slice(0,3) === 'hs1' && key.length === 42
+  maxLength: 90,
+  validate: key => !!key && key.slice(0,3) === 'hs1' && key.length <= 90 // https://wiki.trezor.io/Bech32
 }
 
 function fetchAddress (name, opts=defaultOpts) {
@@ -17,9 +17,15 @@ function fetchAddress (name, opts=defaultOpts) {
       let data = ''
       res.setEncoding('utf8')
       res.on('data', chunk => {
-        if (data.length + chunk.length > maxLength) {
+        const newLine = chunk.indexOf('\n')
+        if (newLine >= 0) {
           req.destroy()
-
+          chunk = chunk.slice(0, newLine)
+        }
+        if (data.length + chunk.length > maxLength) {
+          if (!req.destroyed) {
+            req.destroy()
+          }
           const error = new Error('response too large')
           error.code = 'ELARGE'
           return reject(error)
@@ -30,10 +36,9 @@ function fetchAddress (name, opts=defaultOpts) {
         if (res.statusCode >= 400) {
           const error = new Error(res.statusMessage)
           error.code = res.statusCode
-
           return reject(error)
         }
-        data = data.trim()
+
         if (validate && validate(data)) {
           resolve(data)
         } else {
