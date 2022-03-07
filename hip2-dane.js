@@ -19,7 +19,10 @@ function fetchAddress (name, opts=defaultOpts) {
       res.on('data', chunk => {
         if (data.length + chunk.length > maxLength) {
           req.destroy()
-          return reject('response too large')
+
+          const error = new Error('response too large')
+          error.code = 'ELARGE'
+          return reject(error)
         }
         data += chunk
       })
@@ -34,7 +37,9 @@ function fetchAddress (name, opts=defaultOpts) {
         if (validate && validate(data)) {
           resolve(data)
         } else {
-          reject('invalid address')
+          const error = new Error('invalid address')
+          error.code = 'EINVALID'
+          reject(error)
         }
       })
     })
