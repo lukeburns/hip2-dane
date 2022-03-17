@@ -1,6 +1,6 @@
 {
   "name": "hip2-dane",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "HIP-0002 Well-Known Wallets",
   "main": "index.js",
   "scripts": {
