@@ -11,6 +11,14 @@ test('fetch address', async assert => {
   assert.is(expected, actual)
 })
 
+test('alias-address collision', async assert => {
+  try {
+    await fetchAddress('hs1qshuyulxra3pqpwr40303t8pn79232zztuk4qgz')
+  } catch (e) {
+    assert.pass(e.toString())
+  }
+})
+
 test('invalid address', async assert => {
   try {
     await fetchAddress('invalid-addr.bb-8')
@@ -34,5 +42,3 @@ test('response too large', async assert => {
     assert.pass(e.toString())
   }
 })
-
-// todo: failure test

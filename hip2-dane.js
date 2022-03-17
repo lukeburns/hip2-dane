@@ -9,10 +9,16 @@ const defaultOpts = {
   validate: key => !!key && key.slice(0,3) === 'hs1' && key.length <= 90 // https://wiki.trezor.io/Bech32
 }
 
-function fetchAddress (name, opts=defaultOpts) {
+function fetchAddress (alias, opts=defaultOpts) {
   const { token, maxLength, validate } = opts || {}
   return new Promise((resolve, reject) => {
-    const url = `https://${name}/.well-known/wallets/${token.toUpperCase()}`
+    if (validate(alias)) {
+      const error = new Error('alias cannot be a valid address')
+      error.code = 'ECOLLISION'
+      return reject(error)
+    }
+    
+    const url = `https://${alias}/.well-known/wallets/${token.toUpperCase()}`
     const req = https.get(url, { agent, lookup }, res => {
       let data = ''
       res.setEncoding('utf8')
